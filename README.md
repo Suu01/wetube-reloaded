@@ -6,7 +6,7 @@
 /search -> Search
 
 /users/edit -> Edit User
-/users/delete -> Delete User
+/users/remove -> Remove User
 
 /videos/watch -> Watch Video
 /videos/edit -> Edit Video
