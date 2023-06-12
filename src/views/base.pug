@@ -4,7 +4,9 @@ html(lang="ko")
     //-     block head
     head 
         title #{pageTitle} | Wetube
+        link(link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
     body
-        block content
+        main
+            block content
     include partials/footer.pug
     
