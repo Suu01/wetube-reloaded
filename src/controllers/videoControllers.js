@@ -1,5 +1,14 @@
+const fakeUser = {
+  username: "Nicolas",
+  loggedIn: false,
+};
+
 export const trending = (req, res) =>
-  res.render("home", { pageTitle: "Home", potato: "Tomato" });
+  res.render("home", {
+    pageTitle: "Home",
+    potato: "Tomato",
+    fakeUser: fakeUser,
+  });
 // res.send(
 //   "<!DOCTYPE html><html lang='ko'><head><title>Wetube</title></head><body><h1>Home</h1><footer>&copy;2021 Wetube -  All rights reserved</footer></body></html>"
 // );
