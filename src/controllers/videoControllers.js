@@ -3,12 +3,26 @@ const fakeUser = {
   loggedIn: false,
 };
 
-export const trending = (req, res) =>
-  res.render("home", {
+export const trending = (req, res) => {
+  const videos = [
+    {
+      title: "Hello",
+    },
+    {
+      title: "Video #2",
+    },
+    {
+      title: "Whatsup",
+    },
+  ];
+  // const videos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  return res.render("home", {
     pageTitle: "Home",
+    videos,
     potato: "Tomato",
     fakeUser: fakeUser,
   });
+};
 // res.send(
 //   "<!DOCTYPE html><html lang='ko'><head><title>Wetube</title></head><body><h1>Home</h1><footer>&copy;2021 Wetube -  All rights reserved</footer></body></html>"
 // );
