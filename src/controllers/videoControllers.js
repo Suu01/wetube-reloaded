@@ -111,6 +111,15 @@ export const postEdit = (req, res) => {
   return res.redirect(`/videos/${id}`);
 };
 
+export const getUpload = (req, res) => {
+  return res.render("upload");
+};
+
+export const postUpload = (req, res) => {
+  // here we will add a video to the videos array.
+  return res.redirect("/");
+};
+
 export const search = (req, res) => res.send("Search");
 
 export const upload = (req, res) => res.send("Upload");
