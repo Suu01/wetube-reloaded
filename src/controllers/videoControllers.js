@@ -94,11 +94,21 @@ export const watch = (req, res) => {
   return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
 };
 
-export const edit = (req, res) => {
+export const getEdit = (req, res) => {
   // return res.send(
   //   `<!DOCTYPE html><html lang='ko'><head><title>Wetube</title></head><body><h1>Edit video #${req.params.id}</h1><footer>&copy;2021 Wetube -  All rights reserved</footer></body></html>`
   // );
-  return res.render("edit", { pageTitle: "Edit" });
+  const { id } = req.params;
+  const video = videos[id - 1];
+  return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
+};
+
+export const postEdit = (req, res) => {
+  const { id } = req.params;
+  // console.log(req.body);
+  const { title } = req.body;
+  videos[id - 1].title = title;
+  return res.redirect(`/videos/${id}`);
 };
 
 export const search = (req, res) => res.send("Search");
