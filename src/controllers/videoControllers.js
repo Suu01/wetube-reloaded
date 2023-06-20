@@ -116,17 +116,20 @@ export const home = async (req, res) => {
   // return res.render("home", { pageTitle: "Home", videos });
 };
 
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
+  const { id } = req.params;
+  const video = await Video.findById(id);
+  console.log(video);
+  return res.render("watch", { pageTitle: video.title, video });
   // console.log(req.params);
   // return res.send(
   //   `<!DOCTYPE html><html lang='ko'><head><title>Wetube</title></head><body><h1>Watch video #${req.params.id}</h1><footer>&copy;2021 Wetube -  All rights reserved</footer></body></html>`
   // );
-  const { id } = req.params;
+  // console.log(id);
   // const id = req.params.id;
   // console.log("Show video", id);
   // const video = videos[id - 1];
   // return res.render("watch", { pageTitle: "Watch" });
-  return res.render("watch", { pageTitle: `Watching` });
   // return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
 };
 
