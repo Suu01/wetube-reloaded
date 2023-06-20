@@ -78,16 +78,41 @@ import Video from "../models/Video";
 //   },
 // ];
 
-export const home = (req, res) => {
-  Video.find()
-    .then(function (videos) {
-      console.log("videos", videos);
-    })
-    .catch(function (err) {
-      console.log("error", err);
-    });
-  console.log("hello");
-  return res.render("home", { pageTitle: "Home", videos: [] });
+export const home = async (req, res) => {
+  // console.log("Start");
+  // Video.find()
+  //   .exec()
+  //   .then(function (videos) {
+  //     console.log("Finished");
+  //     console.log("videos", videos);
+  //     return res.render("home", { pageTitle: "Home", videos });
+  //   })
+  //   .catch(function (err) {
+  //     return res.render("server-error");
+  //   });
+  // console.log("I finish first");
+
+  /*
+  Video.find({}, (error, videos) => {
+    if(error){
+      return res.render("server-error")
+    }
+    return res.render("home", {pageTitle: "Home", videos})
+  })
+  */
+
+  try {
+    // console.log("i start");
+    const videos = await Video.find({});
+    // console.log("i finish");
+    // console.log(videos);
+    return res.render("home", { pageTitle: "Home", videos });
+  } catch {
+    return res.render("server-error");
+  }
+
+  // return res.render("home", { pageTitle: "Home", videos: [] });
+  // async/await or promise 사용, callback 업데이트로 사용중지
   // return res.render("home", { pageTitle: "Home", videos });
 };
 
