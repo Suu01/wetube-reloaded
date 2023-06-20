@@ -118,8 +118,11 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id);
-  console.log(video);
+  const video = await Video.findById(id).exec();
+  // console.log(video);
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found." });
+  }
   return res.render("watch", { pageTitle: video.title, video });
   // console.log(req.params);
   // return res.send(
@@ -133,13 +136,17 @@ export const watch = async (req, res) => {
   // return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
 };
 
-export const getEdit = (req, res) => {
+export const getEdit = async (req, res) => {
+  const { id } = req.params;
+  const video = await Video.findById(id).exec();
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found." });
+  }
+  return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
   // return res.send(
   //   `<!DOCTYPE html><html lang='ko'><head><title>Wetube</title></head><body><h1>Edit video #${req.params.id}</h1><footer>&copy;2021 Wetube -  All rights reserved</footer></body></html>`
   // );
-  const { id } = req.params;
   // const video = videos[id - 1];
-  return res.render("edit", { pageTitle: `Editing` });
   // return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
 
