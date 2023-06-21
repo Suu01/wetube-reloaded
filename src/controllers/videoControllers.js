@@ -221,10 +221,11 @@ export const postUpload = async (req, res) => {
   // console.log(req.body);
 };
 
-export const search = (req, res) => res.send("Search");
-
-export const upload = (req, res) => res.send("Upload");
-
-export const deleteVideo = (req, res) => {
-  return res.send("Delete Video");
+export const deleteVideo = async (req, res) => {
+  const { id } = req.params;
+  await Video.findByIdAndDelete(id);
+  // console.log(id);
+  return res.redirect("/");
 };
+
+export const search = (req, res) => res.send("Search");
