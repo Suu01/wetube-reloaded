@@ -150,12 +150,30 @@ export const getEdit = async (req, res) => {
   // return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
 
-export const postEdit = (req, res) => {
+export const postEdit = async (req, res) => {
   const { id } = req.params;
-  // console.log(req.body);
-  const { title } = req.body;
-  // videos[id - 1].title = title;
+  const { title, description, hashtags } = req.body;
+  const video = await Video.exist({ _id: id });
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found." });
+  }
+  await Video.findByIdAndUpdate(id, {
+    title,
+    description,
+    hashtags: hashtags
+      .split(",")
+      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+  });
   return res.redirect(`/videos/${id}`);
+  // video.title = title;
+  // video.description = description;
+  // video.hashtags = hashtags
+  //   .split(",")
+  //   .map((word) => (word.startsWith("#") ? word : `#${word}`));
+  /* await video.save(); */
+  // console.log(req.body);
+  // const { title } = req.body;
+  // videos[id - 1].title = title;
 };
 
 export const getUpload = (req, res) => {
