@@ -140,7 +140,7 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).exec();
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
   // return res.send(
@@ -190,7 +190,7 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     /* console.log(error); */
-    return res.render("upload", {
+    return res.status(404).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });

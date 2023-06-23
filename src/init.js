@@ -1,6 +1,7 @@
 import "./db";
-import mongoose from "mongoose";
 import app from "./server";
+import "./models/Video";
+import "./models/User";
 
 const PORT = 4000;
 
