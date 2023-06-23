@@ -105,7 +105,7 @@ export const home = async (req, res) => {
     // console.log("i start");
     const videos = await Video.find({}).sort({ createdAt: "asc" });
     // console.log("i finish");
-    console.log(videos);
+    // console.log(videos);
     return res.render("home", { pageTitle: "Home", videos });
   } catch {
     return res.render("server-error");
